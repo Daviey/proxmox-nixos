@@ -1,79 +1,86 @@
 {
-  lib,
-  qemu,
   fetchgit,
-  proxmox-backup-qemu,
-  perl538,
   pkg-config,
-  meson,
-  cacert
+  clang,
+  zstd,
+  apt,
+  sg3_utils,
+  libclang,
+  openssl,
+  libxcrypt,
+  acl,
+  linux-pam,
+  libuuid,
+  rustPlatform,
+  git,
+  mkRegistry,
 }:
+let
+  sources = import ./sources.nix;
+  registry = mkRegistry sources;
+in
+rustPlatform.buildRustPackage rec {
+  pname = "proxmox-backup-qemu";
+  version = "1.5.1";
 
-(
-  (qemu.overrideAttrs (old: rec {
-    pname = "pve-qemu";
-    version = "9.2.0-5";
+  src = fetchgit {
+    url = "https://github.com/Daviey/proxmox-backup-qemu.git";
+    rev = "825e50a0246fa5abc79f74de6630e87f17d640a5";
+    hash = "sha256-qynY7bt+lOzpg4YxeUnRk7/xoSbtk+tWGbuNMmAdzHY=";
+    fetchSubmodules = true;
+  };
 
-    src = fetchgit {
-      url = "https://git.proxmox.com/git/pve-qemu.git";
-      rev = "e0969989ac8ba252891a1a178b71e068c8ed4995";
-      hash = "sha256-wIrvaSjatyQq3a897ScljxmivUIM80rvc0F0y2tIZWo=";
-      fetchSubmodules = true;
-      
-      # Download subprojects managed by meson
-      postFetch = ''
-        # Fix submodule URLs from git:// to https://
-        find $out -name ".gitmodules" -exec sed -i 's|git://git.proxmox.com/|https://git.proxmox.com/|g' {} \;
-        
-        cd "$out/qemu"
-        export NIX_SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt
-        for prj in subprojects/*.wrap; do
-          ${lib.getExe meson} subprojects download "$(basename "$prj" .wrap)"
-        done
-        find subprojects -type d -name .git -prune -execdir rm -r {} +
-        rm -rf subprojects/packagecache/tmp*
-      '';
-    };
+  patches = [ ./backup-toml.patch ];
+  patchFlags = [
+    "-p1"
+    "-d"
+    "submodules/proxmox-backup/"
+  ];
 
-    patches =
-      let
-        series = builtins.readFile "${src}/debian/patches/series";
-        patchList = builtins.filter (patch: builtins.isString patch && patch != "") (
-          builtins.split "\n" series
-        );
-        patchPathsList = map (patch: "${src}/debian/patches/${patch}") patchList;
-      in
-      old.patches ++ patchPathsList;
+  cargoLock.lockFile = ./Cargo.lock;
 
-    sourceRoot = "${src.name}/qemu";
+  postPatch = ''
+    rm -rf .cargo
+    cat ${registry}/cargo-patches.toml >> Cargo.toml
+    ln -s ${./Cargo.lock} Cargo.lock
+  '';
 
-    buildInputs = old.buildInputs ++ [ proxmox-backup-qemu ];
-    propagatedBuildInputs = [ proxmox-backup-qemu ];
+  nativeBuildInputs = [
+    acl
+    pkg-config
+    clang
+    zstd
+    zstd.dev
+    apt
+    sg3_utils
+    openssl
+    sg3_utils
+    libxcrypt
+    acl
+    linux-pam
+    git
+  ];
 
-    preBuild =
-      ''
-        cp ${proxmox-backup-qemu}/lib/proxmox-backup-qemu.h .
-      ''
-      + old.preBuild;
+  buildInputs = [
+    acl
+    libxcrypt
+    libuuid
+    zstd
+    clang
+    zstd.dev
+    registry
+    git
+    openssl
+  ];
 
-    nativeBuildInputs = old.nativeBuildInputs ++ [
-      proxmox-backup-qemu
-      perl538
-      pkg-config
-    ];
+  passthru.registry = registry;
 
-    passthru.updateScript = [
-      ../update.py
-      pname
-      "--url"
-      src.url
-      "--version-prefix"
-      (lib.versions.majorMinor old.version)
-    ];
-  })).override
-  {
-    glusterfsSupport = true;
-    enableDocs = false;
-    cephSupport = true;
-  }
-)
+  postInstall = ''
+    cp proxmox-backup-qemu.h $out/lib
+    cp target/*/release/libproxmox_backup_qemu.so $out/lib/libproxmox_backup_qemu.so.0
+  '';
+
+  LIBCLANG_PATH = "${libclang.lib}/lib";
+
+  cargoTestExtraArgs = "-- --skip=test_get_current_release_codename rrd::tests::load_and_save_rrd_v2 rrd::tests::upgrade_from_rrd_v1";
+}
