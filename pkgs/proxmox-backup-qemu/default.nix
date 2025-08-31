@@ -14,8 +14,6 @@
   rustPlatform,
   git,
   mkRegistry,
-  runCommand,
-  lib,
 }:
 let
   sources = import ./sources.nix;
@@ -26,21 +24,10 @@ rustPlatform.buildRustPackage rec {
   version = "1.5.1";
 
   src = fetchgit {
-    url = "https://git.proxmox.com/git/${pname}.git";
-    rev = "c3cbcae289d04b4454a70fc59dc58a19d5edb681";
+    url = "https://github.com/Daviey/proxmox-backup-qemu.git";
+    rev = "a3f4f00";
     hash = "sha256-qynY7bt+lOzpg4YxeUnRk7/xoSbtk+tWGbuNMmAdzHY=";
     fetchSubmodules = true;
-    # Override git config during the fetch to rewrite URLs
-    postFetch = ''
-      # This runs after fetch but before hash calculation
-      # Configure git to rewrite URLs for any future git operations
-      export HOME=$(mktemp -d)
-      git config --global url."https://git.proxmox.com/".insteadOf "git://git.proxmox.com/"
-      
-      # Re-initialize submodules with the new URL config
-      cd $out
-      find . -name ".gitmodules" -exec sed -i 's|git://git.proxmox.com/|https://git.proxmox.com/|g' {} \;
-    '';
   };
 
   patches = [ ./backup-toml.patch ];
