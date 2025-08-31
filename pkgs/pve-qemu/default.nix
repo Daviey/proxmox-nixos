@@ -22,6 +22,9 @@
       
       # Download subprojects managed by meson
       postFetch = ''
+        # Fix submodule URLs from git:// to https://
+        find $out -name ".gitmodules" -exec sed -i 's|git://git.proxmox.com/|https://git.proxmox.com/|g' {} \;
+        
         cd "$out/qemu"
         export NIX_SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt
         for prj in subprojects/*.wrap; do

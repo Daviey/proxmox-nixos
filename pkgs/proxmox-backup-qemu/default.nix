@@ -28,6 +28,10 @@ rustPlatform.buildRustPackage rec {
     rev = "c3cbcae289d04b4454a70fc59dc58a19d5edb681";
     hash = "sha256-qynY7bt+lOzpg4YxeUnRk7/xoSbtk+tWGbuNMmAdzHY=";
     fetchSubmodules = true;
+    postFetch = ''
+      # Fix submodule URLs from git:// to https://
+      find $out -name ".gitmodules" -exec sed -i 's|git://git.proxmox.com/|https://git.proxmox.com/|g' {} \;
+    '';
   };
 
   patches = [ ./backup-toml.patch ];
