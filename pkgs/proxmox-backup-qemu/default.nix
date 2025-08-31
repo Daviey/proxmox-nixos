@@ -24,7 +24,7 @@ rustPlatform.buildRustPackage rec {
   version = "1.5.1";
 
   src = fetchgit {
-    url = "git://git.proxmox.com/git/${pname}.git";
+    url = "https://git.proxmox.com/git/${pname}.git";
     rev = "c3cbcae289d04b4454a70fc59dc58a19d5edb681";
     hash = "sha256-qynY7bt+lOzpg4YxeUnRk7/xoSbtk+tWGbuNMmAdzHY=";
     fetchSubmodules = true;

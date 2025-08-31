@@ -22,7 +22,7 @@ perl538.pkgs.toPerlModule (
     version = "8.2.2";
 
     src = fetchgit {
-      url = "git://git.proxmox.com/git/${pname}.git";
+      url = "https://git.proxmox.com/git/${pname}.git";
       rev = "25dd3756f90afbf65799da4708b3df9c2bf7e9f6";
       hash = "sha256-gmTlDvOTPeFNB2W0H3xHZBWsRFY6XeIb0r/1qNzsphA=";
     };
@@ -56,7 +56,7 @@ perl538.pkgs.toPerlModule (
 
     meta = with lib; {
       description = "Proxmox VE Access control framework";
-      homepage = "git://git.proxmox.com/?p=pve-access-control.git";
+      homepage = "https://git.proxmox.com/?p=pve-access-control.git";
       license = licenses.agpl3Plus;
       maintainers = with maintainers; [
         camillemndn

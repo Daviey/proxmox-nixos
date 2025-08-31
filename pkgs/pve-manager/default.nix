@@ -64,7 +64,7 @@ perl538.pkgs.toPerlModule (
     version = "8.3.5";
 
     src = fetchgit {
-      url = "git://git.proxmox.com/git/${pname}.git";
+      url = "https://git.proxmox.com/git/${pname}.git";
       rev = "dac3aa88bac3f3004bc793eaaf8b27b820043605";
       hash = "sha256-GaAeEwDyxFtLz5+zLD0FPadRZftVHNNDJhZCJSFCl78=";
     };
@@ -190,7 +190,7 @@ perl538.pkgs.toPerlModule (
 
     meta = with lib; {
       description = "The Proxmox VE Manager API and Web UI repository";
-      homepage = "git://git.proxmox.com/?p=pve-manager.git";
+      homepage = "https://git.proxmox.com/?p=pve-manager.git";
       license = licenses.agpl3Plus;
       maintainers = with maintainers; [
         camillemndn

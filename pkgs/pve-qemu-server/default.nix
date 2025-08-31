@@ -56,7 +56,7 @@ perl538.pkgs.toPerlModule (
     version = "8.3.8";
 
     src = fetchgit {
-      url = "git://git.proxmox.com/git/qemu-server.git";
+      url = "https://git.proxmox.com/git/qemu-server.git";
       rev = "78a0c43e7c6b844d1c4f7ce037ce32c9ed6857cd";
       hash = "sha256-YktRlURya0pPg5mu+LVlJcBDhDW5Kd7tduZv0hgGyJo=";
     };
@@ -142,7 +142,7 @@ perl538.pkgs.toPerlModule (
 
     meta = with lib; {
       description = "Proxmox VE's Virtual Machine Manager";
-      homepage = "git://git.proxmox.com/?p=qemu-server.git";
+      homepage = "https://git.proxmox.com/?p=qemu-server.git";
       license = licenses.agpl3Plus;
       maintainers = with maintainers; [
         camillemndn

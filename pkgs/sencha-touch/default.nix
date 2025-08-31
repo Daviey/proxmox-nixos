@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
   version = "2.4.2";
 
   src = fetchgit {
-    url = "git://git.proxmox.com/git/sencha-touch.git";
+    url = "https://git.proxmox.com/git/sencha-touch.git";
     rev = "c4685c8425cee430dd9c3b496a14fcc35c550a62";
     hash = "sha256-ZlUXcszZbi9kSXxF39wLf7PBhJlGBSVN6NS+WACuXmM=";
   };
@@ -38,7 +38,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "";
-    homepage = "git://git.proxmox.com/?p=sencha-touch.git";
+    homepage = "https://git.proxmox.com/?p=sencha-touch.git";
     license = [ ];
     maintainers = with maintainers; [
       camillemndn

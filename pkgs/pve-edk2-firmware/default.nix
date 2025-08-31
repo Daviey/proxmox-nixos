@@ -14,7 +14,7 @@ stdenv.mkDerivation rec {
   version = "4.2025.02-3";
 
   src = fetchgit {
-    url = "git://git.proxmox.com/git/${pname}.git";
+    url = "https://git.proxmox.com/git/${pname}.git";
     rev = "d6146dd6dfc084215dfaa59b95bcf6177e988cb5";
     sha256 = "sha256-6zh9nTdR5+1zZODJ1JBtWkJyo+ioeZoxk7yWtmLBekc=";
 
@@ -130,7 +130,7 @@ stdenv.mkDerivation rec {
 
   meta = {
     description = "edk2 based UEFI firmware modules for virtual machines";
-    homepage = "git://git.proxmox.com/git/${pname}.git";
+    homepage = "https://git.proxmox.com/git/${pname}.git";
     maintainers = with lib.maintainers; [ codgician julienmalka ];
   };
  }

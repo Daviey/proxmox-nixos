@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
   version = "7.0.0-5";
 
   src = fetchgit {
-    url = "git://git.proxmox.com/git/extjs.git";
+    url = "https://git.proxmox.com/git/extjs.git";
     rev = "18909118c3d316f0bb48846920b8c94a4efc31f5";
     hash = "sha256-AaV2DY5DG7tnqDFmfM3yIvJiyQYpR3pX9geH64JG4Ik=";
   };
@@ -36,7 +36,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "";
-    homepage = "git://git.proxmox.com/?p=extjs.git";
+    homepage = "https://git.proxmox.com/?p=extjs.git";
     license = [ ];
     maintainers = with maintainers; [
       camillemndn

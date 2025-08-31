@@ -15,7 +15,7 @@
     version = "9.2.0-5";
 
     src = fetchgit {
-      url = "git://git.proxmox.com/git/pve-qemu.git";
+      url = "https://git.proxmox.com/git/pve-qemu.git";
       rev = "e0969989ac8ba252891a1a178b71e068c8ed4995";
       hash = "sha256-wIrvaSjatyQq3a897ScljxmivUIM80rvc0F0y2tIZWo=";
       fetchSubmodules = true;

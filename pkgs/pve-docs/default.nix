@@ -19,7 +19,7 @@ stdenv.mkDerivation rec {
   version = "8.3.1";
 
   src = fetchgit {
-    url = "git://git.proxmox.com/git/${pname}.git";
+    url = "https://git.proxmox.com/git/${pname}.git";
     rev = "a89cb75f36a1c3a5c7ba7d9ca113ee5af7a88e17";
     hash = "sha256-9vgGDgRXKC9cIVhNOf9RLgCMVqf4lC9Ik97/18zLXys=";
   };
@@ -58,7 +58,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "Proxmox VE Documentation";
-    homepage = "git://git.proxmox.com/?p=pve-docs.git";
+    homepage = "https://git.proxmox.com/?p=pve-docs.git";
     license = licenses.agpl3Plus;
     maintainers = with maintainers; [
       camillemndn

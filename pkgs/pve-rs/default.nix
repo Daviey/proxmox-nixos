@@ -24,7 +24,7 @@ perl538.pkgs.toPerlModule (
     version = "0.9.4";
 
     src = fetchgit {
-      url = "git://git.proxmox.com/git/proxmox-perl-rs.git";
+      url = "https://git.proxmox.com/git/proxmox-perl-rs.git";
       rev = "22a6b226309923ddf6ca1982e813f5a273e0d427";
       hash = "sha256-YxioQTLVYMSvkZx4pYTjnFto9PhFMODS5ZwLa1Wa/JA=";
     };
@@ -96,7 +96,7 @@ perl538.pkgs.toPerlModule (
 
     meta = with lib; {
       description = "Proxmox Rust interface for Perl";
-      homepage = "git://git.proxmox.com/?p=proxmox-perl-rs.git";
+      homepage = "https://git.proxmox.com/?p=proxmox-perl-rs.git";
       license = licenses.agpl3Plus;
       maintainers = with maintainers; [
         camillemndn

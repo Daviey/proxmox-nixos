@@ -30,7 +30,7 @@ perl538.pkgs.toPerlModule (
     version = "4.0.7";
 
     src = fetchgit {
-      url = "git://git.proxmox.com/git/${pname}.git";
+      url = "https://git.proxmox.com/git/${pname}.git";
       rev = "53d8e4892147a063c215bdd9b0c1224d14dad898";
       hash = "sha256-n/Lj12k2h81ZPNYKaiVJ2U3H+TPs/ijwqF8IwJP4Q2o=";
     };
@@ -84,7 +84,7 @@ perl538.pkgs.toPerlModule (
 
     meta = with lib; {
       description = "Proxmox VE High Availabillity Manager";
-      homepage = "git://git.proxmox.com/?p=pve-ha-manager.git";
+      homepage = "https://git.proxmox.com/?p=pve-ha-manager.git";
       license = with licenses; [ ];
       maintainers = with maintainers; [
         camillemndn

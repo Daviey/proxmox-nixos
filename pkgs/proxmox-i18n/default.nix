@@ -20,7 +20,7 @@ stdenv.mkDerivation rec {
   version = "3.2.4";
 
   src = fetchgit {
-    url = "git://git.proxmox.com/git/${pname}.git";
+    url = "https://git.proxmox.com/git/${pname}.git";
     rev = "80a4665aa333807539a491cce7feef3f62ffe8aa";
     hash = "sha256-CGH6ceUJVHdljKMDofPWVXHSNA0XOiUVLmZL6Gjkm60=";
   };
@@ -49,7 +49,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "";
-    homepage = "git://git.proxmox.com/?p=proxmox-i18n.git";
+    homepage = "https://git.proxmox.com/?p=proxmox-i18n.git";
     license = [ ];
     maintainers = with maintainers; [ ];
     platforms = platforms.all;

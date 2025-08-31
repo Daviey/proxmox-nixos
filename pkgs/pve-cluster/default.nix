@@ -44,7 +44,7 @@ perl538.pkgs.toPerlModule (
     version = "8.0.10";
 
     src = fetchgit {
-      url = "git://git.proxmox.com/git/${pname}.git";
+      url = "https://git.proxmox.com/git/${pname}.git";
       rev = "3749d370ac2e1e73d2558f8dbe5d7f001651157c";
       hash = "sha256-/DQ59CGlK8UDQFpnXnE8rrJ0sgtG4G5J6BpsBV2gHPg=";
     };
@@ -120,7 +120,7 @@ perl538.pkgs.toPerlModule (
 
     meta = with lib; {
       description = "Proxmox VE Cluster FS and Tools";
-      homepage = "git://git.proxmox.com/?p=pve-cluster.git";
+      homepage = "https://git.proxmox.com/?p=pve-cluster.git";
       license = licenses.agpl3Plus;
       maintainers = with maintainers; [
         camillemndn

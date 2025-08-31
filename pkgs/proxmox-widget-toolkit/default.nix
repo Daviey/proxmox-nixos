@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
   version = "4.3.3";
 
   src = fetchgit {
-    url = "git://git.proxmox.com/git/proxmox-widget-toolkit.git";
+    url = "https://git.proxmox.com/git/proxmox-widget-toolkit.git";
     rev = "a5fb3afcf9f9865baf379f8840d411e30f07625d";
     hash = "sha256-wJe8TW5mP6g+JdmAoe4GZ6Wj3grkzgOAJhEYf2N7Gis=";
   };
@@ -47,7 +47,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "";
-    homepage = "git://git.proxmox.com/?p=proxmox-widget-toolkit.git";
+    homepage = "https://git.proxmox.com/?p=proxmox-widget-toolkit.git";
     license = with licenses; [ ];
     maintainers = with maintainers; [
       camillemndn

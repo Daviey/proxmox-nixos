@@ -11,7 +11,7 @@ rustPlatform.buildRustPackage rec {
   version = "0.2.1-1";
 
   src = fetchgit {
-    url = "git://git.proxmox.com/git/perlmod.git";
+    url = "https://git.proxmox.com/git/perlmod.git";
     rev = "2c5f34aee080675173ce54b557c8785f24b885ab";
     hash = "sha256-6SoYGQP5ExYiitfO879hDksk9tWLo1W6f98jqQmUznY=";
   };
@@ -47,7 +47,7 @@ rustPlatform.buildRustPackage rec {
 
   meta = with lib; {
     description = "Alternative to Perl XS for Rust";
-    homepage = "git://git.proxmox.com/?p=perlmod.git";
+    homepage = "https://git.proxmox.com/?p=perlmod.git";
     license = with licenses; [ ];
     maintainers = with maintainers; [
       camillemndn
